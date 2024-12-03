@@ -610,6 +610,14 @@ video {
   width: 100%;
 }
 
+.w-5 {
+  width: 1.25rem;
+}
+
+.w-60 {
+  width: 15rem;
+}
+
 .select-none {
   -webkit-user-select: none;
      -moz-user-select: none;
