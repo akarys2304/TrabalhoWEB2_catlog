@@ -1,59 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./output.css">
-    <title>Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <title>Login</title>
 </head>
-<body class="bg-[#2C3231] w-full h-dvh min-h-dvh flex items-center justify-center ">
-
-    <div class="bg-[#1D2120] fixed top-0 w-full flex justify-center lg:justify-start items-center p-5 h-1/8">
-        <img src="./img/cat.png" alt="catlog">
+<body class="bg-[#2C3231]" >
+  <div class="w-screen h-screen grid grid-cols-1 md:grid-cols-2 grid-rows-12">
+    <!-- Cabeçalho -->
+    <div class="bg-[#1D2120] row-span-1 col-span-1 md:col-span-2 flex justify-center items-center">
+        <img class="w-8" src="./img/cat.png">
     </div>
 
-    <div class="w-full h-full lg:grid-cols-2 lg:grid">
-        <div class="lg:flex items-center justify-center hidden">
-            <div class="w-full h-full flex flex-col gap-y-8 items-center
-            justify-center">
-                <img src="./img/LOGO-2x.png"></img>
-            </div>
-        </div>
-        <div class="w-full h-full flex items-center justify-center">
-            <div class="w-full h-7/8 flex flex-col items-center justify-between gap-y-3 md:w-fit md:h-fit md:p-12 md:rounded-2xl">
-                <div class="w-full p-4 flex flex-row justify-center
-                items-center mb-8 md:p-0 md:flex-col lg:hidden">
-                    <img src="./img/LOGO.png" class="w-30"></img>
-                </div>
-                <div class="w-full p-4 flex flex-row justify-center
-                items-center text-white font-bold text-3xl">LOGIN</div>
-                <div class="w-full flex flex-col items-center gap-y-6 p-8">
-                    <div class="w-full relative flex justify-end items-center
-                    md:w-80">
-                        <input placeholder="USUARIO" class="w-full text-xl px-6 bg-[#2C3231]
-                        rounded-full p-2 outline-0 border-2 border-whit
-                        placeholder:text-[#879597] focus:bg-slate-500
-                        md:text-base" />
-                    </div>
-                    <div class="w-full relative flex justify-end items-center">
-                        <input type="password" placeholder="SENHA" class="w-full text-lg px-6 bg-[#2C3231]
-                        rounded-full p-2 outline-0 border-2 border-whit
-                        placeholder:text-[#879597] focus:bg-slate-500
-                        md:text-base" />
-                    </div>
-                </div>
-                <div class="flex flex-col justify-end mb-24 md:mb-0">
-                    <button class="select-none text-xl font-bold mt-8 rounded-full p-3 
-                    bg-[#AA4F66] text-white  hover:bg-blue-700
-                    active:bg-blue-500">ENTRAR</button>
-                    <button class="select-none text-base font-bold mt-6 rounded-full p-3 
-                    bg-white text-black hover:bg-blue-700
-                    active:bg-blue-500">NÃO SOU CADASTRADO</button>
-                </div>
-
-            </div>
-        </div>
+    <div class="row-span-11 col-span-1 md:flex flex-col justify-center items-center hidden">
+        <img src="./img/LOGO-2x.png" alt="" srcset="">
     </div>
-    
+
+    <div class="row-span-3 col-span-1 flex flex-col justify-center items-center md:hidden">
+        <img src="./img/LOGO.png">
+    </div>
+
+    <div class="row-span-10 col-span-1 flex flex-col justify-start md:justify-center items-center">
+        <form class="flex flex-col justify-center items-center gap-4">
+            <p class="text-2xl font-bold font-custom text-white mb-9">LOGIN</p>
+            <input class=" bg-transparent border-2 border-white rounded-3xl pl-5 w-72 h-10 text-[#879597] shadow-xl mb-2" type="text" placeholder="USUARIO">
+            <input class=" bg-transparent border-2 border-white rounded-3xl pl-5 w-72 h-10 text-[#879597] shadow-xl mb-6" type="password" name="password" id="password" placeholder="SENHA">
+            <button class="bg-[#AA4F66] w-40 h-10 text-white text-base rounded-3xl font-bold mb-4">ENTRAR</button>
+        </form>
+        <a class="bg-white w-72 h-10 flex justify-center items-center rounded-3xl font-bold text-xs">NÃO SOU CADASTRADO</a>
+    </div>
+  </div>
 </body>
 </html>
