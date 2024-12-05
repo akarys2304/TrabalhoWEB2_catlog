@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>Cadastro</title>
+</head>
+<body class="bg-[#2C3231]">
+    <div class="w-screen h-screen grid grid-cols-1 grid-rows-12">
+        <!-- Cabeçalho -->
+        <div class="bg-[#1D2120] col-span-1 row-span-1 grid grid-rows-1 grid-cols-3 w-full">
+            <div class="col-span-1 flex justify-start items-center ml-6">
+                <a href="./login.html">
+                    <img class="w-5" src="./img/back.png">
+                </a>
+            </div>
+            <div class="flex justify-center items-center">
+                <img class="w-8" src="./img/cat.png">
+            </div>
+        </div>
+        <div class="w-full col-span-1 row-span-2 flex justify-center items-center pt-7">
+            <p class="text-2xl font-bold font-custom text-white mb-9">CADASTRO</p>
+        </div>
+        <div class="w-full col-span-1 row-span-8 flex flex-col justify-start items-center">
+            <form class="flex flex-col justify-center items-center gap-2">
+                <input class=" bg-transparent border-2 border-white rounded-3xl pl-5 w-72 h-10 text-[#879597] shadow-xl mb-2" type="text" placeholder="NOME">
+                <input class=" bg-transparent border-2 border-white rounded-3xl pl-5 w-72 h-10 text-[#879597] shadow-xl mb-2" type="text" placeholder="USUARIO">
+                <input class=" bg-transparent border-2 border-white rounded-3xl pl-5 w-72 h-10 text-[#879597] shadow-xl mb-2" type="text" placeholder="E-MAIL">
+                <input class=" bg-transparent border-2 border-white rounded-3xl pl-5 w-72 h-10 text-[#879597] shadow-xl mb-2" type="text" placeholder="TELEFONE">
+                <input class=" bg-transparent border-2 border-white rounded-3xl pl-5 w-72 h-10 text-[#879597] shadow-xl mb-2" type="text" placeholder="DATA DE NASCIMENTO" class="border px-2 py-2 rounded-md" pattern="\d{2}/\d{2}/\d{4}" title="Formato: DD/MM/AAAA">
+                <div class="w-full flex justify-end items-center">
+                    <input class="bg-transparent border-2 border-white rounded-3xl pl-5 w-72 h-10 text-[#879597] shadow-xl mb-2 outline-0" type="text" placeholder="GÊNERO">
+                    <svg class="stroke-1 w-8 stroke-white absolute mr-4 mb-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                </div>
+                <input class=" bg-transparent border-2 border-white rounded-3xl pl-5 w-72 h-10 text-[#879597] shadow-xl mb-2" type="text" placeholder="SENHA">
+                <input class=" bg-transparent border-2 border-white rounded-3xl pl-5 w-72 h-10 text-[#879597] shadow-xl mb-2" type="text" placeholder="CONFIRMAR SENHA">
+                <button class="bg-[#AA4F66] w-40 h-10 text-white text-base rounded-3xl font-bold mt-5 hover:bg-[#db728c]">CONCLUIR</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
