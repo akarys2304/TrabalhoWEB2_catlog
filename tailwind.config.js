@@ -5,6 +5,10 @@ module.exports = {
     extend: {
       fontFamily: {
         custom: 'Inter, sans-serif'
+      },
+      colors: {
+        'custom-purp': '#484A77',
+        'custom-gray': '#242927'
       }
     },
   },
