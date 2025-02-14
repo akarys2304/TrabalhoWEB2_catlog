@@ -27,18 +27,19 @@ db.connect((err) => {
 });
 
 // Rota de Cadastro
-app.post('/cadastro', async (req, res) => {
-  const { nome, email, senha } = req.body;
-  const senhaCriptografada = await bcrypt.hash(senha, 10);
+app.post('/cadastro', (req, res) => {
+  const { nome, usuario, email, telefone, dataNascimento, genero, senha } = req.body;
 
-  const query = 'INSERT INTO usuarios (nome, email, senha) VALUES (?, ?, ?)';
-  db.query(query, [nome, email, senhaCriptografada], (err, result) => {
-    if (err) {
-      return res.status(500).json({ erro: err.message });
+  const sql = 'INSERT INTO usuarios (nome, usuario, email, telefone, dataNascimento, genero, senha) VALUES (?, ?, ?, ?, ?, ?, ?)';
+
+  db.query(sql, [nome, usuario, email, telefone, dataNascimento, genero, senha], (erro, resultado) => {
+    if (erro) {
+      return res.status(500).json({ mensagem: 'Erro ao cadastrar usuário', erro });
     }
     res.status(201).json({ mensagem: 'Usuário cadastrado com sucesso!' });
   });
 });
+
 
 // Rota de Login
 app.post('/login', async (req, res) => {
