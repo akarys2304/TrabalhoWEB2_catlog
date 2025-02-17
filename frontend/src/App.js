@@ -6,7 +6,6 @@ function App() {
   return (
     <Router>
       <div>
-        <h1>Meu Site</h1>
         <Routes>
           <Route path="/" element={<Cadastro />} />
           <Route path="/login" element={<Login />} />
