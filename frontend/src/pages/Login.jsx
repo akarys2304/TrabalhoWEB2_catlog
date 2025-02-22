@@ -45,7 +45,6 @@ function Login() {
             <img class="w-24" src={logo}/>
         </div>
 
-
         <div className="row-span-8 md:row-span-11 col-span-1 flex flex-col justify-start md:justify-center items-center">
         <form className="flex flex-col justify-center items-center gap-4" onSubmit={handleLogin}>
             <p className="text-2xl lg:text-3xl font-bold font-custom text-white mb-9">LOGIN</p>
