@@ -36,6 +36,8 @@ header h1 {
 }
 
 .profile {
+    display: flex;
+    flex-direction: column;
     text-align: center;
     padding: 20px;
 }
@@ -48,6 +50,7 @@ header h1 {
 }
 
 .profile-pic img {
+    justify-self: center;
     width: 150px;
     height: 150px;
     border-radius: 50%;
