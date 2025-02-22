@@ -202,7 +202,7 @@ function Geral() {
                 <div className="max-container flex w-screen md:flex-row flex-col">
                     {/* <!-- Mini menu que só tem no mobile --> */}
                     <div className="block md:hidden w-full bg-custom-gray h-fit text-white flex justify-center fixed bottom-0" id="botoespe">
-                        <a href="/"
+                        <a href="/novo_post"
                             className="font-bold w-30 text-center m-2 border-2 border-slate-100 rounded-3xl bg-[#AA4F66] text-white p-3 mr-4">
                             NOVO POST
                         </a>
@@ -287,7 +287,7 @@ function Geral() {
                     <div className="righside hidden md:block w-3/12 flex flex-col h-screen mt-10 justify-items-center">
                         <div
                             className="font-bold text-center w-3/5 m-2 border-2 border-slate-100 rounded-3xl bg-[#AA4F66] text-white p-3 mr-4 mb-10">
-                            <a href="/">
+                            <a href="/novo_post">
                                 NOVO POST
                             </a>
                         </div>

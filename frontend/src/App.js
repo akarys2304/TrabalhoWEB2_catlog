@@ -5,6 +5,7 @@ import Inicio from './pages/Inicio';
 import Geral from './pages/Geral';
 import Perfil from './pages/Perfil';
 import EditarPerfil from './pages/EditarPerfil';
+import NovoPost from './pages/NovoPost';
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/geral" element={<Geral />} />
           <Route path="/perfil" element={<Perfil />} />
           <Route path="/editar_perfil" element={<EditarPerfil />} />
+          <Route path="/novo_post" element={<NovoPost />} />
         </Routes>
       </div>
     </Router>
