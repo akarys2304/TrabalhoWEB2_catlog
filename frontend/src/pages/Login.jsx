@@ -53,7 +53,7 @@ function Login() {
             <input className=" bg-transparent border-2 border-white rounded-3xl pl-5 w-72 lg:w-80 h-10 lg:h-12 text-[#879597] shadow-xl mb-6" type="password" name="password" id="password" placeholder="SENHA" value={senha} onChange={(e) => setSenha(e.target.value)}/>
             <button type="submit" className="bg-[#AA4F66] w-40 lg:w h-10 text-white text-center pt-2 text-base rounded-3xl font-bold mb-4 hover:bg-[#db728c]">ENTRAR</button>
         </form>
-        <Link className="bg-white cursor-pointer w-72 h-10 flex justify-center items-center rounded-3xl font-bold text-xs hover:bg-gray-400" to="/cadastro"> NÃO SOU CADASTRADO </Link>
+        <Link className="bg-white cursor-pointer w-72 h-10 flex justify-center items-center rounded-3xl font-bold text-xs  hover:bg-gray-400" to="/cadastro"> NÃO SOU CADASTRADO </Link>
         </div>
       </div>
     </div>
