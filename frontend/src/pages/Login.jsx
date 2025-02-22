@@ -33,16 +33,16 @@ function Login() {
     <div className='bg-[#2C3231]'>
       <div className="w-screen h-screen grid grid-cols-1 md:grid-cols-2 grid-rows-12">
 
-        <div class="bg-[#1D2120] row-span-1 col-span-1 md:col-span-2 flex justify-center items-center">
-          <img class="w-8" src={gato}/>
+        <div className="bg-[#1D2120] row-span-1 col-span-1 md:col-span-2 flex justify-center items-center">
+          <img className="w-8" src={gato} alt="Gatinho"/>
         </div>
 
-        <div class="row-span-11 col-span-1 md:flex flex-col justify-center items-center hidden">
-            <img src={logo2x} alt="" srcset=""/>
+        <div className="row-span-11 col-span-1 md:flex flex-col justify-center items-center hidden">
+            <img src={logo2x} alt="Logo catlog grande"/>
         </div>
 
-        <div class="row-span-3 col-span-1 flex flex-col justify-center items-center md:hidden">
-            <img class="w-24" src={logo}/>
+        <div className="row-span-3 col-span-1 flex flex-col justify-center items-center md:hidden">
+            <img className="w-24" src={logo} alt="logo catlog pequena"/>
         </div>
 
         <div className="row-span-8 md:row-span-11 col-span-1 flex flex-col justify-start md:justify-center items-center">
