@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+const verificarToken = require('./authMiddleware')
+
 const app = express();
 app.use(cors());
 app.use(bodyParser.json());
@@ -24,6 +26,12 @@ db.connect((err) => {
   } else {
     console.log('Banco de dados conectado!');
   }
+});
+
+// Rota do Início
+app.get('/inicio', verificarToken, (req, res) => {
+  const userName = req.user.nome;  // O nome vem do payload do JWT
+  res.status(200).json({ mensagem: `${userName}` });
 });
 
 // Rota de Cadastro

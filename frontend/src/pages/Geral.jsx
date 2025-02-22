@@ -5,6 +5,26 @@ import logo from './img/LOGO.png';
 import fotoperfil from './img/user.png';
 
 function Geral(){
+
+    // Defina o estado para 'mensagem'
+    const [mensagem, setMensagem] = useState("");
+
+    useEffect(() => {
+        const fetchUserName = async () => {
+            const token = localStorage.getItem('token');
+        
+            const resposta = await fetch('http://localhost:3001/inicio', {
+                method: 'GET',
+                headers: { Authorization: `Bearer ${token}` },
+            });
+        
+            const dados = await resposta.json();
+            setMensagem(dados.mensagem); // Atualiza o estado com a mensagem
+        };
+    
+        fetchUserName();
+    }, []); 
+
     useEffect(() => {
         document.body.style.backgroundColor = "#2C3231";
         return () => {
@@ -186,7 +206,7 @@ function Geral(){
                 <div className="hidden md:block w-3/12 md:flex w-3/12 h-dvh items-center justify-center">
                     {/* <!-- Lateral esquerdo --> */}
                     <div className="ml-30 border border-[#AA4F66] rounded-3xl self-center h-96 p-5">
-                        <h1 className="text-center text-white w-60">Olá, USER0000</h1>
+                        <h1 className="text-center text-white w-60">Olá, {mensagem}</h1>
                         <img className="my-8 w-24 justify-self-center" src={logo} />
                         <p className="text-center text-white mb-6 ">Seus posts recentes: </p>
                         <div className="justify-self-center butao">

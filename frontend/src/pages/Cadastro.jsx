@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import voltar from './img/back.png';
 import gato from './img/cat.png';
 import logo from './img/LOGO.png';
@@ -12,6 +13,7 @@ function Cadastro() {
   const [genero, setGenero] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmarSenha, setConfirmarSenha] = useState('');
+  const navigate = useNavigate(); // Crie a constante navigate
 
   const handleCadastro = async (e) => {
     e.preventDefault();
@@ -38,6 +40,11 @@ function Cadastro() {
     const dados = await resposta.json();
     console.log(dados);
     alert(dados.mensagem);
+
+    if (resposta.ok) {
+      // Redireciona para a página /geral após cadastro bem-sucedido
+      navigate('/login');
+    }
   };
 
   return (

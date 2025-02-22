@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import capa from './img/cogu.jpg';
 import gato from './img/cat.png';
 import logo from './img/LOGO.png';
@@ -26,9 +27,9 @@ function Inicio(){
                         <p className="text-white">GERAL</p>
                     </div>
                     <div className="flex-auto w-8 flex flex-row-reverse items-center">
-                        <a href="login.html" className=" h-10 w-20 mr-4 border-2 border-slate-100 rounded-3xl bg-custom-purp text-white flex items-center justify-center text-center">
+                        <Link className=" h-10 w-20 mr-4 border-2 border-slate-100 rounded-3xl bg-custom-purp text-white flex items-center justify-center text-center" to="/login">
                             LOGAR
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
@@ -40,9 +41,9 @@ function Inicio(){
                             <img className="my-8 w-24 justify-self-center" src={logo}/>
                             <p className="text-center text-white mb-6 ">Seus posts recentes: </p>
                         <div className="justify-self-center butao"> 
-                        <a href="login.html" className="h-10 w-20 border-2 border-slate-100 rounded-3xl bg-custom-purp text-white p-3">
+                        <Link className="h-10 w-20 border-2 border-slate-100 rounded-3xl bg-custom-purp text-white p-3" to="/login">
                                 LOGAR
-                            </a>
+                            </Link>
                             </div>
                         </div>
                     </div>

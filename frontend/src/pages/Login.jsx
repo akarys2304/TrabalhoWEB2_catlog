@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import logo2x from './img/LOGO-2x.png';
 import gato from './img/cat.png';
 import logo from './img/LOGO.png';
@@ -7,6 +7,7 @@ import logo from './img/LOGO.png';
 function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const navigate = useNavigate(); // Crie a constante navigate
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ function Login() {
 
     if (resposta.ok) {
       localStorage.setItem('token', dados.token);
-      alert('Login bem-sucedido!');
+      navigate('/geral'); // Redireciona para /geral
     } else {
       alert('Erro: ' + dados.erro);
     }
