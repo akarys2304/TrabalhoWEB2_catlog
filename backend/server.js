@@ -191,6 +191,20 @@ app.post('/logout', (req, res) => {
 ///////////////////////////////////// Post /////////////////////////////////////////////////////////////////////
 
 // Rota para publicar post
+app.get('/todosPosts', (req, res) =>{
+  try{
+    const sql = 'SELECT * FROM post';
+    db.query(sql, (erro, resultado) => {
+      if (erro) {
+        return res.status(500).json({ mensagem: 'Erro ao buscar os posts', erro });
+      }
+      res.status(200).json({mensagem: 'Posts recuperados com sucesso!', posts: resultado});
+    });
+  }catch(error){
+    res.status(500).json({ mensagem: 'Erro ao tentar buscar todos os posts', error });
+  }
+});
+
 app.post('/publicarPost', verificarToken, (req, res) => {
   const { titulo, texto, caminho_imagem } = req.body;
   const id_user = req.user.id; // Pegando o ID do usuário logado
