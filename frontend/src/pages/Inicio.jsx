@@ -1,10 +1,33 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import capa from './img/cogu.jpg';
+import cogu from "./img/cogu.jpg";
+import visualizar from "./img/view.png";
 import gato from './img/cat.png';
 import logo from './img/LOGO.png';
 
 function Inicio(){
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        const buscarPosts = async () => {
+            try {
+              const response = await fetch("http://localhost:3001/todosPosts");
+              const data = await response.json();
+              
+              console.log(data.posts);
+        
+              if (response.ok) {
+                setPosts(data.posts); // Atualiza o estado com os posts
+              } else {
+                console.error(data.mensagem); // Exibe erro, se houver
+              }
+            } catch (error) {
+              console.error('Erro ao buscar os posts:', error);
+            }
+          };
+
+          buscarPosts();
+    }, []);
     
     useEffect(() => {
         document.body.style.backgroundColor = "#2C3231";
@@ -45,44 +68,24 @@ function Inicio(){
                         </div>
                     </div>
                     {/* <!-- Feed --> */}
-                    <div className="flex-col feed h-fit w-full relative md:w-1/2 md:bg-[#242927] md:border-x-2 md:border-[#1D2120]">
-                        {/* <!--Card--> */}
-                        <div className="my-8 flex-col mb-15 md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center"> 
-                            <div className="flex-row flex mb-4">
-                                <div className="w-8"></div>
-                                <h1 className="text-white flex-auto w-8 text-center text-2xl font-bold flex-1">AMANITA</h1>
-                                <div className="w-8 hidden hidden md:block"></div>
-                            </div>
-                            <img src={capa}  className="justify-self-center md:w-4/5 md:w-3/4" alt="Imagem de cogumelo"/>
-                            <div className="texto mt-5 w-5/6 mb-10 md:w-3/4 justify-self-center">
-                                <p className="text-center text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            </div>
+                        <div className="flex-col feed h-fit w-full md:w-1/2 md:bg-custom-gray md:border-x-2 md:border-[#1D2120]">
+                            {posts.map((post) => (
+                                <div className="my-8 flex-col mb-15 md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center" id="card">
+                                  <div className="flex-row flex mb-4">
+                                      <div className="w-8"></div>
+                                      <h1 className="text-white flex-auto w-8 text-center text-2xl font-bold flex-1">{post.titulo}</h1>
+                                      <img className="block md:hidden w-6 h-6 mr-2" src={visualizar} alt="Ver mais" />
+                                      <div className="w-8 hidden hidden md:block"></div>
+                                  </div>
+                                  <img src={cogu} className="justify-self-center md:w-4/5 md:w-3/4" alt="Imagem de cogumelo" />
+                                  <div className="texto mt-5 w-5/6 mb-10 md:w-3/4 justify-self-center">
+                                      <p className="text-center text-white">{post.texto}
+                                      </p>
+                                  </div>
+                                </div>  
+                            ))}
+
                         </div>
-                        {/* <!--Card--> */}
-                        <div className="my-8 flex-col mb-15 md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center"> 
-                            <div className="flex-row flex mb-4">
-                                <div className="w-8"></div>
-                                <h1 className="text-white flex-auto w-8 text-center text-2xl font-bold flex-1">AMANITA</h1>
-                                <div className="w-8 hidden hidden md:block"></div>
-                            </div>
-                            <img src={capa}  className="justify-self-center md:w-4/5 md:w-3/4" alt="Imagem de cogumelo"/>
-                            <div className="texto mt-5 w-5/6 mb-10  md:w-3/4 justify-self-center">
-                                <p className="text-center text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            </div>
-                        </div>
-                        {/* <!--Card--> */}
-                        <div className="my-8 flex-col md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center"> 
-                            <div className="flex-row flex mb-4">
-                                <div className="w-8"></div>
-                                <h1 className="text-white flex-auto w-8 text-center text-2xl font-bold flex-1">AMANITA</h1>
-                                <div className="w-8 hidden hidden md:block"></div>
-                            </div>
-                            <img src={capa}  className="justify-self-center md:w-4/5 md:w-3/4" alt="Imagem de cogumelo" />
-                            <div className="texto mt-5 w-5/6 mb-10  md:w-3/4 justify-self-center">
-                                <p className="text-center text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                            </div>
-                        </div>
-                    </div>
                     <div className="righside hidden md:block w-3/12"></div>
 
                 </div>
