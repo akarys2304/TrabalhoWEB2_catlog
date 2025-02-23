@@ -82,6 +82,8 @@ function EditarPerfil() {
         alert(dados.mensagem);
 
         if (resposta.ok) {
+            // Atualiza o token no localStorage
+            localStorage.setItem('token', dados.token);
             navigate('/perfil');
         }
     };

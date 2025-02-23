@@ -111,7 +111,27 @@ app.put('/editarPerfil', verificarToken, async (req, res) => {
 
       // Verifica se houve alteração
       if (resultado.affectedRows > 0) {
-        return res.status(200).json({ mensagem: 'Usuário atualizado com sucesso!' });
+        // Busca os dados atualizados do usuário
+        db.query('SELECT id, nome, email FROM usuarios WHERE id = ?', [id], (erro, resultados) => {
+          if (erro) {
+            return res.status(500).json({ mensagem: 'Erro ao buscar usuário atualizado', erro });
+          }
+
+          if (resultados.length > 0) {
+            const usuarioAtualizado = resultados[0];
+
+            // Gera um novo token com os dados atualizados
+            const token = jwt.sign(
+              { id: usuarioAtualizado.id, nome: usuarioAtualizado.nome, email: usuarioAtualizado.email },
+              process.env.JWT_SECRET,
+              { expiresIn: '1h' }
+            );
+
+            return res.status(200).json({ mensagem: 'Edição bem-sucedida', token });
+          } else {
+            return res.status(404).json({ mensagem: 'Usuário não encontrado após atualização.' });
+          }
+        });
       } else {
         return res.status(404).json({ mensagem: 'Usuário não encontrado ou nenhuma alteração realizada.' });
       }
@@ -120,6 +140,7 @@ app.put('/editarPerfil', verificarToken, async (req, res) => {
     return res.status(500).json({ mensagem: 'Erro no servidor', erro });
   }
 });
+
 
 // Rota de Cadastro
 app.post('/cadastro', async (req, res) => {
