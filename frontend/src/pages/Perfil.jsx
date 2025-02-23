@@ -30,7 +30,7 @@ function Perfil(){
             {/* <!-- Cabeçalho --> */}
             <div className="cabecalho">
                 <div className="back-button">
-                    <a href="./login">
+                    <a href="/geral">
                         <img className="seta" src={volta} alt = "voltar" />
                     </a>
                 </div>
