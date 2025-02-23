@@ -12,15 +12,15 @@ Modal.setAppElement("#root");
 
 function Geral() {
     const [modalAberto, setModalAberto] = useState(false);
-
-    // Defina o estado para 'mensagem'
     const [mensagem, setMensagem] = useState("");
+    const [postagem, setPostagem] = useState(null);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         const fetchUserName = async () => {
             const token = localStorage.getItem('token');
 
-            const resposta = await fetch('http://localhost:3001/geral', {
+            const resposta = await fetch('http://localhost:3001/inicio', {
                 method: 'GET',
                 headers: { Authorization: `Bearer ${token}` },
             });
@@ -30,6 +30,27 @@ function Geral() {
         };
 
         fetchUserName();
+    }, []);
+
+    useEffect(() => {
+        const buscarPosts = async () => {
+            try {
+              const response = await fetch("http://localhost:3001/todosPosts");
+              const data = await response.json();
+              
+              console.log(data.posts);
+        
+              if (response.ok) {
+                setPosts(data.posts); // Atualiza o estado com os posts
+              } else {
+                console.error(data.mensagem); // Exibe erro, se houver
+              }
+            } catch (error) {
+              console.error('Erro ao buscar os posts:', error);
+            }
+          };
+
+          buscarPosts();
     }, []);
 
     useEffect(() => {
@@ -51,7 +72,8 @@ function Geral() {
     }, []);
 
     // Função para abrir modal e bloquear rolagem do body
-    const abrirModal = () => {
+    const abrirModal = (postagem) => {
+        setPostagem(postagem);
         setModalAberto(true);
         document.body.style.overflow = "hidden"; // Bloqueia rolagem do fundo
     };
@@ -121,57 +143,21 @@ function Geral() {
                     </div>
                     {/* <!-- Feed --> */}
                     <div className="flex-col feed h-fit w-full md:w-1/2 md:bg-custom-gray md:border-x-2 md:border-[#1D2120]">
-                        {/* <!--Card--> */}
-                        <div className="my-8 flex-col mb-15 md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center" id="card" onClick={abrirModal}>
-                            <div className="flex-row flex mb-4">
-                                <div className="w-8"></div>
-                                <h1 className="text-white flex-auto w-8 text-center text-2xl font-bold flex-1">AMANITA</h1>
-                                <img className="block md:hidden w-6 h-6 mr-2" src={visualizar} alt="Ver mais" />
-                                <div className="w-8 hidden hidden md:block"></div>
-                            </div>
-                            <img src={cogu} className="justify-self-center md:w-4/5 md:w-3/4" alt="Imagem de cogumelo" />
-                            <div className="texto mt-5 w-5/6 mb-10 md:w-3/4 justify-self-center">
-                                <p className="text-center text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                </p>
-                            </div>
-                        </div>  
-                        {/* <!--Card--> */}
-                        <div className="my-8 flex-col mb-15 md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center" id="card" onClick={abrirModal}>
-                            <div className="flex-row flex mb-4">
-                                <div className="w-8"></div>
-                                <h1 className="text-white flex-auto w-8 text-center text-2xl font-bold flex-1">AMANITA</h1>
-                                <img className="block md:hidden w-6 h-6 mr-2" src={visualizar} alt="Ver mais" />
-                                <div className="w-8 hidden hidden md:block"></div>
-                            </div>
-                            <img src={cogu} className="justify-self-center md:w-4/5 md:w-3/4" alt="Imagem de cogumelo" />
-                            <div className="texto mt-5 w-5/6 mb-10 md:w-3/4 justify-self-center">
-                                <p className="text-center text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                </p>
-                            </div>
-                        </div>  
-                        {/* <!--Card--> */}
-                        <div className="my-8 flex-col mb-15 md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center" id="card" onClick={abrirModal}>
-                            <div className="flex-row flex mb-4">
-                                <div className="w-8"></div>
-                                <h1 className="text-white flex-auto w-8 text-center text-2xl font-bold flex-1">AMANITA</h1>
-                                <img className="block md:hidden w-6 h-6 mr-2" src={visualizar} alt="Ver mais" />
-                                <div className="w-8 hidden hidden md:block"></div>
-                            </div>
-                            <img src={cogu} className="justify-self-center md:w-4/5 md:w-3/4" alt="Imagem de cogumelo" />
-                            <div className="texto mt-5 w-5/6 mb-10 md:w-3/4 justify-self-center">
-                                <p className="text-center text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                </p>
-                            </div>
-                        </div>   
+                        {posts.map((post) => (
+                            <div className="my-8 flex-col mb-15 md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center" id="card" onClick={() => abrirModal(post)}>
+                              <div className="flex-row flex mb-4">
+                                  <div className="w-8"></div>
+                                  <h1 className="text-white flex-auto w-8 text-center text-2xl font-bold flex-1">{post.titulo}</h1>
+                                  <img className="block md:hidden w-6 h-6 mr-2" src={visualizar} alt="Ver mais" />
+                                  <div className="w-8 hidden hidden md:block"></div>
+                              </div>
+                              <img src={cogu} className="justify-self-center md:w-4/5 md:w-3/4" alt="Imagem de cogumelo" />
+                              <div className="texto mt-5 w-5/6 mb-10 md:w-3/4 justify-self-center">
+                                  <p className="text-center text-white">{post.texto}
+                                  </p>
+                              </div>
+                            </div>  
+                        ))}
 
                     </div>
                     <div className="righside hidden md:block w-3/12 flex flex-col h-screen mt-10 justify-items-center">
@@ -210,7 +196,7 @@ function Geral() {
                         <>
                             <div className="flex-row flex mb-4">
                                 <div className="w-8"></div>
-                                <h1 className="text-white flex-auto w-8 text-center text-3xl  md:text-2xl font-bold md:flex-1">AMANITA</h1> 
+                                <h1 className="text-white flex-auto w-8 text-center text-3xl  md:text-2xl font-bold md:flex-1">{postagem?.titulo}</h1> 
                                 <img className="block md:hidden w-6 h-6 mr-2" src={visualizar} alt="Ver mais" />
                                 <div className="w-8 hidden hidden md:block"></div>
                             </div>
@@ -220,18 +206,8 @@ function Geral() {
                             <div className="texto mt-5 w-5/6 mb-10 md:w-3/4 justify-self-center ">
                                 <div className="overflow-auto md:max-h-48">
                                     <p className="text-white text-center mt-5">Post por <span className="font-bold ">teteux2 </span>em <a className="font-bold text-blue-500" href="/">Cogumelos Famosos</a></p>
-                                    <p className="text-center text-white">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                        do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                        do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                        do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                                    <p className="text-center text-white">
+                                        {postagem?.texto}
                                     </p>
                                 </div>
                                 
@@ -264,7 +240,7 @@ function Geral() {
                         // Layout de Mobile
                         <div >
 
-                            <h1 className="text-white text-center font-bold text-3xl mt-10">AMANITA</h1>
+                            <h1 className="text-white text-center font-bold text-3xl mt-10">{postagem?.titulo}</h1>
                             <img src={cogu} alt="Foto do post" />
 
                             {/* Textos */}
@@ -273,18 +249,7 @@ function Geral() {
                                 {/* <p className=" text-center text-white">
                                 
                                 </p> */}
-                                <TextoTruncado conteudo=" Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                                    do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-                                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur." />
+                                <TextoTruncado conteudo={postagem?.texto} />
                             </div>
                             {/* Estatisticas  */}
                             <div className="reactions flex-row flex justify-items-center align-center self-center justify-self-center mt-10">

@@ -14,9 +14,6 @@ function Inicio(){
       }, []);
 
     return (
-
-        
-
         // <div className="bg-[#2C3231]" > antigo body 
             <div className="w-screen h-screen bg-[#2C3231] grid grid-cols-1 md:grid-cols-2 grid-rows-12">
                 <div className="bg-[#1D2120] row-span-1 col-span-1 md:col-span-2 flex items-stretch gap-4">
