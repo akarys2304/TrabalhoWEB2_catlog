@@ -141,6 +141,7 @@ app.put('/editarPerfil', verificarToken, async (req, res) => {
   }
 });
 
+
 // Rota de Cadastro
 app.post('/cadastro', async (req, res) => {
   const { nome, usuario, email, telefone, dataNascimento, genero, senha } = req.body;
