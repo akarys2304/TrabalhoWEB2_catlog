@@ -76,7 +76,7 @@ function Cadastro() {
 
               <div className="flex flex-col lg:flex-row gap-4">
                 <input className="bg-transparent border-2 border-white rounded-full pl-5 w-72 lg:w-[275px] h-10 lg:h-14 text-[#879597]" type="text" placeholder="TELEFONE" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
-                <input className="bg-transparent border-2 border-white rounded-full pl-5 w-72 lg:w-[334px] h-10 lg:h-14 text-[#879597]" type="text" placeholder="DATA DE NASCIMENTO" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
+                <input className="bg-transparent border-2 border-white rounded-full pl-5 w-72 lg:w-[334px] h-10 lg:h-14 text-[#879597]" type="date" placeholder="DATA DE NASCIMENTO" value={dataNascimento} onChange={(e) => setDataNascimento(e.target.value)} />
               </div>
 
               <input className="bg-transparent border-2 border-white rounded-full pl-5 w-72 lg:w-[636px] h-10 lg:h-14 text-[#879597]" type="text" placeholder="GÊNERO" value={genero} onChange={(e) => setGenero(e.target.value)} />
