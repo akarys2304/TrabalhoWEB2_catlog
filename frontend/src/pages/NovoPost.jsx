@@ -1,8 +1,50 @@
+import { use, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import gato from './img/cat.png';
 import logo from './img/LOGO.png';
 import voltar from "./img/back.png";
 
 function NovoPost(){
+    const[titulo, setTitulo] = useState('');
+    const[texto, setTexto] = useState('');
+    const[caminhoImagem, setCaminhoImagem] = useState('');
+    const navigate = useNavigate(); // Crie a constante navigate
+    
+    
+    const handlePostarPost = async (e) => {
+        e.preventDefault();
+
+        const token = localStorage.getItem('token'); // Obtém o token do localStorage
+    
+        if (!token) {
+            alert("Token não encontrado");
+            return;
+        }
+
+    
+        const resposta = await fetch('http://127.0.0.1:3001/publicarPost', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            titulo,
+            texto,
+            caminhoImagem,
+          }),
+        });
+
+        const dados = await resposta.json();
+        console.log(dados);
+        alert(dados.mensagem);
+          
+        if (resposta.ok) {
+          // Redireciona para a página /geral após cadastro bem-sucedido
+          navigate('/geral');
+        }
+      };
+
     return(
         <div className="bg-[#2C3231]">
             <div className="w-screen h-screen grid grid-cols-1 grid-rows-12">
@@ -25,14 +67,14 @@ function NovoPost(){
                             <p className="text-2xl md:text-5xl font-bold font-custom text-white mb-9">NOVO POST</p>
                         </div>
                         <div className="w-full col-span-1 row-span-9 flex flex-col justify-start items-center md:items-start">
-                            <form className="flex flex-col justify-center items-center gap-2 md:gap-4">
-                                <input className=" bg-transparent border-2 border-white rounded-full pl-5 w-72 md:w-[636px] h-10 md:h-14 text-[#879597] shadow-xl mb-2" type="text" placeholder="Título" />
+                            <form onSubmit={handlePostarPost} className="flex flex-col justify-center items-center gap-2 md:gap-4">
+                                <input className=" bg-transparent border-2 border-white rounded-full pl-5 w-72 md:w-[636px] h-10 md:h-14 text-[#879597] shadow-xl mb-2" type="text" placeholder="Título" value={titulo} onChange={(e) => setTitulo(e.target.value)}/>
                                 <div className="flex flex-col md:flex-row justify-center items-center md:flex md:justify-center md:items-center gap-2 md:gap-6">
-                                    <input className=" bg-transparent border-white rounded-full pl-5 w-72 md:w-[275px] h-10 md:h-14 text-[#879597] mb-2" type="text" placeholder="Selecione arquivos do seu pc" />
+                                    <input className=" bg-transparent border-white rounded-full pl-5 w-72 md:w-[275px] h-10 md:h-14 text-[#879597] mb-2" type="text" placeholder="Selecione arquivos do seu pc" value={caminhoImagem} onChange={(e) => setCaminhoImagem(e.target.value)} />
                                     <button className="bg-[#AA4F66] w-72 md:w-[150px] h-10 md:h-14 text-white text-base md:text-lg rounded-full font-bold mb-2 hover:bg-[#db728c]">UPLOAD</button>
                                     
                                 </div>
-                                <textarea className="bg-transparent border-2 border-white rounded-xl pl-5 w-72 md:w-[636px] h-32 text-[#879597] shadow-xl mb-2 resize-none overflow-auto" placeholder="Conteúdo do Post"/>
+                                <textarea className="bg-transparent border-2 border-white rounded-xl pl-5 w-72 md:w-[636px] h-32 text-[#879597] shadow-xl mb-2 resize-none overflow-auto" placeholder="Conteúdo do Post"value={texto} onChange={(e) => setTexto(e.target.value)}/>
         
                                 <div className="w-full flex justify-end items-center">
                                     <input className="bg-transparent border-2 border-white rounded-full pl-5 w-72 md:w-[636px] h-10 md:h-14 text-[#879597] shadow-xl mb-2 outline-0" type="text" placeholder="Selecione o catálogo" />
@@ -41,7 +83,7 @@ function NovoPost(){
                                     </svg>
                                 </div>
                                 
-                                <button className="bg-[#AA4F66] w-40 md:w-44 h-10 md:h-16 text-white text-base md:text-lg rounded-full font-bold mt-5 hover:bg-[#db728c]">CONCLUIR</button>
+                                <button type='submit' className="bg-[#AA4F66] w-40 md:w-44 h-10 md:h-16 text-white text-base md:text-lg rounded-full font-bold mt-5 hover:bg-[#db728c]">CONCLUIR</button>
                             </form>
                         </div>
                     </div>
