@@ -35,7 +35,7 @@ app.get('/recuperarPerfil', verificarToken, async (req, res) => {
   const id = req.user.id; // Pegando o ID do usuário do token
 
   try {
-    const sql = 'SELECT id, nome, email, telefone, dataNascimento, genero FROM usuarios WHERE id = ?';
+    const sql = 'SELECT nome, usuario, email, telefone, dataNascimento, genero FROM usuarios WHERE id = ?';
     db.query(sql, [id], (erro, resultados) => {
       if (erro) return res.status(500).json({ mensagem: 'Erro no servidor', erro });
 
@@ -56,6 +56,28 @@ app.get('/inicio', verificarToken, (req, res) => {
   res.status(200).json({ mensagem: `${userName}` });
 });
 
+// Rota para deletar perfil
+app.delete('/deletarPerfil', verificarToken, async (req, res) => {
+  const id = req.user.id; // Pegando o ID do usuário logado
+
+  try {
+    const sql = 'DELETE FROM usuarios WHERE id = ?';
+    db.query(sql, [id], (erro, resultados) => {
+      if (erro) {
+        return res.status(500).json({ mensagem: 'Erro ao deletar perfil', erro });
+      }
+
+      if (resultados.affectedRows === 0) {
+        return res.status(404).json({ mensagem: 'Usuário não encontrado' });
+      }
+
+      res.json({ mensagem: 'Perfil deletado com sucesso' });
+    });
+  } catch (erro) {
+    res.status(500).json({ mensagem: 'Erro no servidor', erro });
+  }
+});
+
 // Rota de Editar Perfil
 app.put('/editarPerfil', verificarToken, async (req, res) => {
   const { nome, usuario, email, telefone, dataNascimento, genero, senha } = req.body;
@@ -69,18 +91,18 @@ app.put('/editarPerfil', verificarToken, async (req, res) => {
       senhaCriptografada = await bcrypt.hash(senha, salt);
     }
 
-    // Atualiza os dados do usuário, mas mantém a senha atual caso não seja fornecida
-    const sql = 'UPDATE usuarios SET nome = ?, usuario = ?, email = ?, telefone = ?, dataNascimento = ?, genero = ?, senha = ? WHERE id = ?';
-    const valores = [
-      nome,
-      usuario,
-      email,
-      telefone,
-      dataNascimento,
-      genero,
-      senhaCriptografada || null,  // Se a senha não for alterada, passamos null para não modificar
-      id
-    ];
+    let sql;
+    let valores;
+
+    if (senhaCriptografada) {
+      // Se a senha foi alterada, inclua ela na atualização
+      sql = 'UPDATE usuarios SET nome = ?, usuario = ?, email = ?, telefone = ?, dataNascimento = ?, genero = ?, senha = ? WHERE id = ?';
+      valores = [nome, usuario, email, telefone, dataNascimento, genero, senhaCriptografada, id];
+    } else {
+      // Se a senha não foi alterada, não inclui ela na atualização
+      sql = 'UPDATE usuarios SET nome = ?, usuario = ?, email = ?, telefone = ?, dataNascimento = ?, genero = ? WHERE id = ?';
+      valores = [nome, usuario, email, telefone, dataNascimento, genero, id];
+    }
 
     db.query(sql, valores, (erro, resultado) => {
       if (erro) {
@@ -160,6 +182,12 @@ app.post('/login', async (req, res) => {
   });
 });
 
+app.post('/logout', (req, res) => {
+  // No caso de JWT, não há nada para remover no backend diretamente.
+  // A melhor prática é garantir que o token seja removido no front-end.
+
+  res.status(200).json({ mensagem: 'Usuário deslogado com sucesso!' });
+});
 ///////////////////////////////////// Post /////////////////////////////////////////////////////////////////////
 
 // Rota para publicar post
