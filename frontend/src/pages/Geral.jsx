@@ -78,7 +78,7 @@ function Geral() {
         setPostagem(postagem);
         setModalAberto(true);
         document.body.style.overflow = "hidden"; // Bloqueia rolagem do fundo
-    };
+    };  
 
     // Função para fechar modal e restaurar rolagem do body
     const fecharModal = () => {
@@ -132,7 +132,7 @@ function Geral() {
                         <div className="ml-30 border border-[#AA4F66] rounded-3xl self-center h-96 p-5">
                             <h1 className="text-center text-white w-60">Olá, {mensagem}</h1>
                             <img className="my-8 w-24 justify-self-center" src={logo} alt="Logotipo catlog" />
-                            <p className="text-center text-white mb-6 ">Seus posts recentes: </p>
+                            <p className="text-center text-white mb-6 ">Posts recentes: </p>
                             <div className="justify-self-center butao">
                                 <ul>
                                     {posts.slice(0, 4).reverse().map((post) => (
