@@ -55,6 +55,7 @@ function Perfil(){
     
           if (resposta.ok) {
             alert(dados.mensagem);
+            localStorage.removeItem('token'); // Ou sessionStorage.removeItem('token');
             navigate('/login'); // Redireciona para a página de login após a exclusão
           } else {
             setErro(dados.mensagem); // Exibe erro, caso ocorra

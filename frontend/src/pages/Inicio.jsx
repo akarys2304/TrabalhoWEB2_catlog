@@ -4,6 +4,8 @@ import cogu from "./img/cogu.jpg";
 import visualizar from "./img/view.png";
 import gato from './img/cat.png';
 import logo from './img/LOGO.png';
+import champ from "./img/champ.jpg";
+import shi from "./img/shi.jpeg";
 
 function Inicio(){
     const [posts, setPosts] = useState([]);
@@ -35,7 +37,6 @@ function Inicio(){
           document.body.style.backgroundColor = ""; // Reseta ao desmontar
         };
       }, []);
-
     return (
         // <div className="bg-[#2C3231]" > antigo body 
             <div className="w-screen h-screen bg-[#2C3231] grid grid-cols-1 md:grid-cols-2 grid-rows-12">
@@ -69,7 +70,7 @@ function Inicio(){
                     </div>
                     {/* <!-- Feed --> */}
                         <div className="flex-col feed h-fit w-full md:w-1/2 md:bg-custom-gray md:border-x-2 md:border-[#1D2120]">
-                            {posts.map((post, index) => (
+                            {posts.slice().reverse().map((post, index) => (
                                 <div className="my-8 flex-col mb-15 md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center" id="card" key={index}>
                                   <div className="flex-row flex mb-4">
                                       <div className="w-8"></div>
@@ -83,7 +84,35 @@ function Inicio(){
                                       </p>
                                   </div>
                                 </div>  
+
                             ))}
+
+                            <div className="my-8 flex-col mb-15 md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center" id="card">
+                              <div className="flex-row flex mb-4">
+                                  <div className="w-8"></div>
+                                  <h1 className="text-white flex-auto w-8 text-center text-2xl font-bold flex-1">Champinhon</h1>
+                                  <img className="block md:hidden w-6 h-6 mr-2" src={visualizar} alt="Ver mais" />
+                                  <div className="w-8 hidden hidden md:block"></div>
+                              </div>
+                              <img src={champ} className="justify-self-center md:w-4/5 md:w-3/4" alt="Imagem de cogumelo" />
+                              <div className="texto mt-5 w-5/6 mb-10 md:w-3/4 justify-self-center">
+                                  <p className="text-center text-white">O champignon (Agaricus bisporus) é um dos cogumelos mais consumidos no mundo. Ele pode ser encontrado em diferentes variedades, como o champignon branco e o portobello, que é a versão mais madura e de sabor intenso. Rico em proteínas, fibras, vitaminas do complexo B e antioxidantes, o champignon é um alimento versátil, utilizado em saladas, molhos, risotos e pizzas. Além do sabor suave, seu cultivo é relativamente fácil, tornando-o acessível e popular na culinária global.
+                                  </p>
+                              </div>
+                            </div> 
+                            <div className="my-8 flex-col mb-15 md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center" id="card">
+                              <div className="flex-row flex mb-4">
+                                  <div className="w-8"></div>
+                                  <h1 className="text-white flex-auto w-8 text-center text-2xl font-bold flex-1">Shiitake</h1>
+                                  <img className="block md:hidden w-6 h-6 mr-2" src={visualizar} alt="Ver mais" />
+                                  <div className="w-8 hidden hidden md:block"></div>
+                              </div>
+                              <img src={shi} className="justify-self-center md:w-4/5 md:w-3/4" alt="Imagem de cogumelo" />
+                              <div className="texto mt-5 w-5/6 mb-10 md:w-3/4 justify-self-center">
+                                  <p className="text-center text-white">O shiitake (Lentinula edodes) é um cogumelo comestível originário da Ásia, amplamente apreciado por seu sabor marcante e textura carnuda. Além de seu uso culinário em pratos como sopas, risotos e refogados, o shiitake é valorizado por suas propriedades nutricionais e medicinais. Ele é rico em proteínas, fibras, vitaminas do complexo B e compostos bioativos que fortalecem o sistema imunológico. Estudos também apontam benefícios como a redução do colesterol e efeitos antioxidantes. Com seu aroma característico e benefícios à saúde, o shiitake conquistou espaço na gastronomia mundial.
+                                  </p>
+                              </div>
+                            </div> 
 
                         </div>
                     <div className="righside hidden md:block w-3/12"></div>
