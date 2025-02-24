@@ -135,17 +135,16 @@ function Geral() {
                             <p className="text-center text-white mb-6 ">Seus posts recentes: </p>
                             <div className="justify-self-center butao">
                                 <ul>
-                                    <li className="text-blue-500 text-center"><a href="/">Lorem ipsum dolor sit amet</a></li>
-                                    <li className="text-blue-500 text-center"><a href="/">Lorem ipsum dolor sit amet</a></li>
-                                    <li className="text-blue-500 text-center"><a href="/">Lorem ipsum dolor sit amet</a></li>
-                                    <li className="text-blue-500 text-center"><a href="/">Lorem ipsum dolor sit amet</a></li>
+                                    {posts.slice(0, 4).reverse().map((post) => (
+                                        <li className="text-blue-500 text-center">{post.titulo}</li>
+                                    ))}
                                 </ul>
                             </div>
                         </div>
                     </div>
                     {/* <!-- Feed --> */}
                     <div className="flex-col feed h-fit w-full md:w-1/2 md:bg-custom-gray md:border-x-2 md:border-[#1D2120]">
-                        {posts.map((post, index) => (
+                        {posts.slice().reverse().map((post, index) => (
                             <div className="my-8 flex-col mb-15 md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center" id="card" key={index} onClick={() => abrirModal(post)}>
                               <div className="flex-row flex mb-4">
                                   <div className="w-8"></div>
