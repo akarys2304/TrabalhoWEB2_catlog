@@ -143,8 +143,8 @@ function Geral() {
                     </div>
                     {/* <!-- Feed --> */}
                     <div className="flex-col feed h-fit w-full md:w-1/2 md:bg-custom-gray md:border-x-2 md:border-[#1D2120]">
-                        {posts.map((post) => (
-                            <div className="my-8 flex-col mb-15 md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center" id="card" onClick={() => abrirModal(post)}>
+                        {posts.map((post, index) => (
+                            <div className="my-8 flex-col mb-15 md:border md:rounded-md md:border-gray-400 border-b-4 border-b-[#1D2120] md:p-4 pb5 md:w-9/12 md:justify-self-center" id="card" key={index} onClick={() => abrirModal(post)}>
                               <div className="flex-row flex mb-4">
                                   <div className="w-8"></div>
                                   <h1 className="text-white flex-auto w-8 text-center text-2xl font-bold flex-1">{post.titulo}</h1>
